@@ -6,7 +6,7 @@
 
     <div class="max-w-7xl mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Product Card 1 -->
-        <div v-for="product in products" :key="products.id" class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div v-for="(product,index) in products" :key="products.id" class="bg-white rounded-lg shadow-md overflow-hidden">
             <img class="h-48 w-full object-cover" :src="product.image" alt="Product Image 1">
             <div class="p-4">
                 <h3 class="text-xl font-bold text-gray-800">{{product.name}}</h3>
@@ -28,6 +28,7 @@
                     <router-link :to="`/product/${product.id}`" class="text-gray-900 px-3 py-2 rounded-md text-sm font-medium bg-blue-100 hover:bg-gray-100">
                         Edit
                       </router-link>
+                      <button @click="deleteProduct(product.id,index)" type="button" class="ml-2 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
                     
                 </div>
             </div>
@@ -65,6 +66,20 @@ export default{
             const response = await axios.get('/api/products');
 
             this.products = response.data.data;
+        },
+
+        async deleteProduct(productid,index){
+            if(productid){
+
+                if (confirm("Are you sure you want to delete this product?")){
+                    const response = await axios.delete(`/api/delete-product/${productid}`);
+
+                    if(response.data.status == 'success'){
+                        alert('Product deleted successfully!');
+                        this.products.splice(index, 1);
+                    }
+                }
+            }
         }
     }
 

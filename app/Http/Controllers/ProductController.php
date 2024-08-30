@@ -172,4 +172,33 @@ class ProductController extends Controller
 
         }
     }
+
+
+    public function deleteProduct($id){
+
+        $product = Product::find($id);
+
+        $data = [];
+        if($product){
+            $product->feature()->delete();
+            $product->category()->detach();
+
+            $product->delete();
+
+            $data = [
+                'status' => 'success',
+                'message' => 'Product and related features deleted successfully'
+            ];
+        }else{
+            $data = [
+                'status' => 'success',
+                'message' => 'Product Not found!'
+            ];
+        }
+
+
+        return response()->json($data);
+
+
+    }
 }
