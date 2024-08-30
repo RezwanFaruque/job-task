@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,4 @@ Route::post('/update-product/{id}',[ProductController::class,'updateProduct'])->
 Route::delete('/delete-product/{id}',[ProductController::class,'deleteProduct'])->name('product.delete');
 
 Route::get('/categories',[ProductController::class,'getCategory'])->name('product.getcategories');
+Route::delete('/delete-category/{id}',[CategoryController::class,'deleteCategory'])->name('category.delete');

@@ -45,7 +45,8 @@
               v-model="selectedCategories"
               :id="category"
             />
-            <label class="ml-2" :for="category.name">{{ category.name }}</label>
+            <label class="ml-2 d-flex relative" :for="category.name"> <span>{{ category.name }}</span> <span @click="deleteCategory(category.id,index)" class="absolute bottom-0 cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4c-4.419 0-8 3.582-8 8s3.581 8 8 8s8-3.582 8-8s-3.581-8-8-8m3.707 10.293a.999.999 0 1 1-1.414 1.414L12 13.414l-2.293 2.293a.997.997 0 0 1-1.414 0a1 1 0 0 1 0-1.414L10.586 12L8.293 9.707a.999.999 0 1 1 1.414-1.414L12 10.586l2.293-2.293a.999.999 0 1 1 1.414 1.414L13.414 12z"/></svg></span> </label>
+            
           </div>
         </div>
   
@@ -144,7 +145,21 @@ import axios from 'axios';
 
         this.categories = response.data.data;
        
-      }
+      },
+
+      async deleteCategory(categoryid,index){
+          if(categoryid){
+
+            if (confirm("Delete Category will delete related products. Proceed?")){
+              const response = await axios.delete(`/api/delete-category/${categoryid}`);
+
+              if(response.data.status == 'success'){
+                  alert('Category deleted successfully!');
+                  this.categories.splice(index, 1);
+              }
+            }
+          }
+        }
     },
   }
   </script>

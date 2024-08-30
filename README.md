@@ -10,23 +10,15 @@
 
 - Clone this repository form this url
 
-```bash
-git clone https://github.com/Takar-Hisab/interview-test.git
 ```
 - Setup your project with composer requirement. 
 - Setup a database with your preferred name.
 - Run php artisan migrate:fresh --seed command after setup Database.
 ```bash
 php artisan migrate:fresh --seed
+
+- NB: After setup add some category manually in categories table
 ```
 
 
-#### Task and Issues:
-Setup project successfully and see home page for task details.
 
-#### Submission Process:
-- Complete all task.
-- Upload this project in GitHub and share repository link.
-
-
-Thanks and regards, Best of luck.
