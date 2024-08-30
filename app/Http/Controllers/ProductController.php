@@ -19,7 +19,7 @@ class ProductController extends Controller
         $products = Product::with([
             'category',
             'feature'
-        ])->get();
+        ])->orderBy('id','DESC')->get();
 
         $data = [
             'status' => 'success',

@@ -1,6 +1,10 @@
 <template>
     <div class="max-w-2xl mx-auto p-4">
-      <form @submit.prevent="handleSubmit" class="space-y-4">
+      
+      <h2 class="mb-2"><strong>Add Product</strong></h2>
+      <hr>
+      
+      <form @submit.prevent="handleSubmit" class="space-y-4 mt-3">
         <!-- Title -->
         <div>
           <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
@@ -35,12 +39,13 @@
           <label for="" class="block text-sm font-medium text-gray-700">Select Categories</label>
           <div v-for="(category, index) in categories" :key="category.id" class="field-checkbox">
             <input
+
               type="checkbox"
               :value="category.id"
               v-model="selectedCategories"
               :id="category"
             />
-            <label :for="category.name">{{ category.name }}</label>
+            <label class="ml-2" :for="category.name">{{ category.name }}</label>
           </div>
         </div>
   
@@ -55,7 +60,7 @@
             />
             <button type="button" @click="removeFeature(index)" class="text-red-500">Remove</button>
           </div>
-          <button type="button" @click="addFeature" class="text-blue-500">Add Feature</button>
+          <button type="button" @click="addFeature" class="text-blue-500">Add More</button>
         </div>
   
         <!-- Submit Button -->

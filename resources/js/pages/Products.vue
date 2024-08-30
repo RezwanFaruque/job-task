@@ -10,12 +10,18 @@
             <img class="h-48 w-full object-cover" :src="product.image" alt="Product Image 1">
             <div class="p-4">
                 <h3 class="text-xl font-bold text-gray-800">{{product.name}}</h3>
-                <p class="text-sm text-gray-500">Category: 
-                    
-                    <span v-for="category in product.category" :key="category.id"  class="font-semibold text-gray-700">{{category.name}},</span></p>
+                <p class="text-sm text-gray-500">
+                    <strong class="mr-3">Category</strong>
+                    <span v-for="category in product.category" :key="category.id" class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{category.name}}</span>
+                </p>
                 
-                <ul class="list-disc list-inside text-gray-600 mt-2">
-                    <li v-for="feature in product.feature" :key="feature.id">{{feature.description}}</li>
+                <ul class="list-disc list-inside text-gray-600 mt-2" v-for="feature in product.feature" :key="feature.id">
+                    <li class="flex items-center">
+                        <svg class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                         </svg>
+                         {{feature.description}}
+                    </li>
                     
                 </ul>
                 <div class="mt-4 text-center">
